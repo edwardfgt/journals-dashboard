@@ -1,0 +1,17 @@
+{
+    "name": "journals-dashboard",
+    "version": "1.0.0",
+    "description": "Dashboard for managing journals",
+    "main": "index.js",
+    "scripts": {
+      "start": "concurrently \"npm run server\" \"npm run client\"",
+      "server": "cd backend && node server.js",
+      "client": "cd frontend && npm run dev"
+    },
+    "keywords": ["dashboard", "journals", "react", "express"],
+    "author": "Your Name",
+    "license": "ISC",
+    "dependencies": {
+      "concurrently": "^8.2.2"
+    }
+  }
