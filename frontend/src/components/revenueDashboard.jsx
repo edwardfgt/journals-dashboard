@@ -9,6 +9,7 @@ const RevenueDashboard = () => {
     date,
     'Client A': revenueData.clientA[index],
     'Client B': revenueData.clientB[index],
+    'Total': revenueData.clientA[index] + revenueData.clientB[index]
   }));
 
   return (
