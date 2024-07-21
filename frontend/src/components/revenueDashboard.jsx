@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, Title, BarChart, DonutChart, Metric } from '@tremor/react';
-import ClientRevenueChart from './ClientRevenueChart';
-import revenueData from '../revenueData.json';
+import ClientRevenueChart from './clientRevenueChart';
+
+import revenueData from '../data/revenueData.json';
 
 const RevenueDashboard = () => {
   const combinedClientData = revenueData.dates.map((date, index) => ({
