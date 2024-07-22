@@ -8,7 +8,7 @@ function App() {
   const [count, setCount] = useState(0)
 
 return (
-  <div className="flex h-screen bg-gray-100">
+  <div className="flex h-screen bg-tremor-background dark:bg-dark-tremor-background">
     <Sidebar />
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-10 max-w-7xl mx-auto">

@@ -24,7 +24,6 @@ const RevenueDashboard = () => {
       <ClientRevenueChart clientsData={combinedClientData} />
 
       <Card>
-        <Title>Client 1 Revenue</Title>
         <RevenueStreamChart revenueData={client1Data}/>
       </Card>
 

@@ -17,6 +17,7 @@ const RevenueStreamChart = ({ revenueData }) => {
         valueFormatter={dataFormatter}
         yAxisWidth={60}
         onValueChange={(v) => console.log(v)}
+        stack={true}
       />
     </Card>
   );
