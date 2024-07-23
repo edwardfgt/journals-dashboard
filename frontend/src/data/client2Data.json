@@ -1,0 +1,79 @@
+[
+    {
+      "date": "2023-01-01",
+      "Product Sales": 2000,
+      "Service Subscriptions": 1500,
+      "Consulting": 1000,
+      "Partnerships": 500
+    },
+    {
+      "date": "2023-02-01",
+      "Product Sales": 2200,
+      "Service Subscriptions": 1600,
+      "Consulting": 1100,
+      "Partnerships": 550
+    },
+    {
+      "date": "2023-03-01",
+      "Product Sales": 2400,
+      "Service Subscriptions": 1700,
+      "Consulting": 1200,
+      "Partnerships": 600
+    },
+    {
+      "date": "2023-04-01",
+      "Product Sales": 2600,
+      "Service Subscriptions": 1800,
+      "Consulting": 1300,
+      "Partnerships": 650
+    },
+    {
+      "date": "2023-05-01",
+      "Product Sales": 2800,
+      "Service Subscriptions": 1900,
+      "Consulting": 1400,
+      "Partnerships": 700
+    },
+    {
+      "date": "2023-06-01",
+      "Product Sales": 3000,
+      "Service Subscriptions": 2000,
+      "Consulting": 1500,
+      "Partnerships": 750
+    },
+    {
+      "date": "2023-07-01",
+      "Product Sales": 3200,
+      "Service Subscriptions": 2100,
+      "Consulting": 1600,
+      "Partnerships": 800
+    },
+    {
+      "date": "2023-08-01",
+      "Product Sales": 3400,
+      "Service Subscriptions": 2200,
+      "Consulting": 1700,
+      "Partnerships": 850
+    },
+    {
+      "date": "2023-09-01",
+      "Product Sales": 3600,
+      "Service Subscriptions": 2300,
+      "Consulting": 1800,
+      "Partnerships": 900
+    },
+    {
+      "date": "2023-10-01",
+      "Product Sales": 3800,
+      "Service Subscriptions": 2400,
+      "Consulting": 1900,
+      "Partnerships": 950
+    },
+    {
+      "date": "2023-11-01",
+      "Product Sales": 4000,
+      "Service Subscriptions": 2500,
+      "Consulting": 2000,
+      "Partnerships": 1000
+    }
+  ]

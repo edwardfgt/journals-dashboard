@@ -5,6 +5,7 @@ import RevenueStreamChart from './revenueStreamsChart';
 
 import totalRevenueData from '../data/totalRevenueData.json';
 import client1Data from '../data/client1Data.json'
+import client2Data from '../data/client2Data.json'
 
 const RevenueDashboard = () => {
   const combinedClientData = totalRevenueData.dates.map((date, index) => ({
@@ -13,6 +14,11 @@ const RevenueDashboard = () => {
     'Client B': totalRevenueData.clientB[index],
     'Total': totalRevenueData.clientA[index] + totalRevenueData.clientB[index]
   }));
+
+  const streamsDatasets = [
+    { data: client1Data, title: "Newsletter 1" },
+    { data: client2Data, title: "Newsletter 2" },
+  ]
 
   return (
     <div className="space-y-6">
@@ -23,10 +29,16 @@ const RevenueDashboard = () => {
 
       <ClientRevenueChart clientsData={combinedClientData} />
 
-      <Card>
-        <RevenueStreamChart revenueData={client1Data}/>
-      </Card>
 
+      {streamsDatasets.map((dataset, index) => (
+        <Card>
+        <RevenueStreamChart 
+          key={index}
+          revenueData={dataset.data} 
+          title={dataset.title}
+        />
+      </Card>
+      ))}
     </div>
   );
 };

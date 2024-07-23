@@ -1,13 +1,14 @@
 import React from 'react';
 import { Card, Title, AreaChart } from '@tremor/react';
+import PropTypes from 'prop-types';
 
-const RevenueStreamChart = ({ revenueData }) => {
+const RevenueStreamChart = ({ revenueData, title = "Revenue Stream Breakdown" }) => {
   const dataFormatter = (number) => `$${Intl.NumberFormat('us').format(number).toString()}`;
   const revenueStreams = Object.keys(revenueData[0]).filter(key => key !== 'date');
 
   return (
     <Card>
-      <Title>Revenue Stream Breakdown</Title>
+      <Title>{title}</Title>
       <AreaChart
         className="h-80 mt-4"
         data={revenueData}
@@ -21,6 +22,11 @@ const RevenueStreamChart = ({ revenueData }) => {
       />
     </Card>
   );
+};
+
+RevenueStreamChart.propTypes = {
+  revenueData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  title: PropTypes.string
 };
 
 export default RevenueStreamChart;
