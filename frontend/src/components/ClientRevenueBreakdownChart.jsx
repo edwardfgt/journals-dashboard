@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Title, AreaChart } from '@tremor/react';
 import PropTypes from 'prop-types';
 
-const RevenueStreamChart = ({ revenueData, title = "Revenue Stream Breakdown" }) => {
+const ClientRevenueBreakdownChart = ({ revenueData, title = "Revenue Stream Breakdown" }) => {
   const dataFormatter = (number) => `$${Intl.NumberFormat('us').format(number).toString()}`;
   const revenueStreams = Object.keys(revenueData[0]).filter(key => key !== 'date');
 
@@ -24,9 +24,9 @@ const RevenueStreamChart = ({ revenueData, title = "Revenue Stream Breakdown" })
   );
 };
 
-RevenueStreamChart.propTypes = {
+ClientRevenueBreakdownChart.propTypes = {
   revenueData: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string
 };
 
-export default RevenueStreamChart;
+export default ClientRevenueBreakdownChart;

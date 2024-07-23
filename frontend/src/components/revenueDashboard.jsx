@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Title, BarChart, DonutChart, Metric } from '@tremor/react';
-import ClientRevenueChart from './clientRevenueChart';
-import RevenueStreamChart from './revenueStreamsChart';
+import TotalRevenueChart from './totalRevenueChart';
+import ClientRevenueBreakdownChart from './ClientRevenueBreakdownChart';
 
 import totalRevenueData from '../data/totalRevenueData.json';
 import client1Data from '../data/client1Data.json'
@@ -27,12 +27,12 @@ const RevenueDashboard = () => {
         <Metric>${totalRevenueData.totalRevenue.toLocaleString()}</Metric>
       </Card>
 
-      <ClientRevenueChart clientsData={combinedClientData} />
+      <TotalRevenueChart clientsData={combinedClientData} />
 
 
       {streamsDatasets.map((dataset, index) => (
         <Card>
-        <RevenueStreamChart 
+        <ClientRevenueBreakdownChart 
           key={index}
           revenueData={dataset.data} 
           title={dataset.title}

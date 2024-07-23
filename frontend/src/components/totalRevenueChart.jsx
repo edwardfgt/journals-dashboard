@@ -1,10 +1,11 @@
 import React from 'react';
 import { Card, Title, AreaChart } from '@tremor/react';
 
-const ClientRevenueChart = ({ clientsData }) => {
+const TotalRevenueChart = ({ clientsData }) => {
   const dataFormatter = (number) => `$${Intl.NumberFormat('us').format(number).toString()}`;
-
-  const clientNames = Object.keys(clientsData[0]).filter(key => key !== 'date');
+  
+  // Filter out 'Total' from the categories
+  const clientNames = Object.keys(clientsData[0]).filter(key => key !== 'date' && key !== 'Total');
 
   return (
     <Card>
@@ -17,10 +18,14 @@ const ClientRevenueChart = ({ clientsData }) => {
         colors={["indigo", "rose", "amber", "emerald", "blue"]}
         valueFormatter={dataFormatter}
         yAxisWidth={60}
-        onValueChange={(v) => console.log(v)}
+        showLegend={true}
+        showTooltip={true}
+        showGridLines={true}
+        curveType="monotone"
+        stack="true"
       />
     </Card>
   );
 };
 
-export default ClientRevenueChart;
+export default TotalRevenueChart;
