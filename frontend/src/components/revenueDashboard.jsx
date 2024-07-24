@@ -1,43 +1,46 @@
-import React from 'react';
-import { Card, Title, BarChart, DonutChart, Metric } from '@tremor/react';
+import React, { useState, useEffect } from 'react';
+import { Card, Title, Metric } from '@tremor/react';
 import TotalRevenueChart from './totalRevenueChart';
 import ClientRevenueBreakdownChart from './ClientRevenueBreakdownChart';
-
-import totalRevenueData from '../data/totalRevenueData.json';
-import client1Data from '../data/client1Data.json'
-import client2Data from '../data/client2Data.json'
+import { fetchTotalRevenue, fetchClientRevenue, fetchNewsletterRevenue } from '../services/api';
 
 const RevenueDashboard = () => {
-  const combinedClientData = totalRevenueData.dates.map((date, index) => ({
-    date,
-    'Client A': totalRevenueData.clientA[index],
-    'Client B': totalRevenueData.clientB[index],
-    'Total': totalRevenueData.clientA[index] + totalRevenueData.clientB[index]
-  }));
+  const [totalRevenue, setTotalRevenue] = useState(null);
+  const [clientRevenue, setClientRevenue] = useState([]);
+  const [newsletterRevenue, setNewsletterRevenue] = useState([]);
 
-  const streamsDatasets = [
-    { data: client1Data, title: "Newsletter 1" },
-    { data: client2Data, title: "Newsletter 2" },
-  ]
+  useEffect(() => {
+    const fetchData = async () => {
+      const totalRevenueData = await fetchTotalRevenue();
+      const clientRevenueData = await fetchClientRevenue();
+      const newsletterRevenueData = await fetchNewsletterRevenue();
+
+      setTotalRevenue(totalRevenueData.totalRevenue);
+      setClientRevenue(clientRevenueData);
+      setNewsletterRevenue(newsletterRevenueData);
+    };
+
+    fetchData();
+  }, []);
+
+  if (!totalRevenue) return <div>Loading...</div>;
 
   return (
     <div className="space-y-6">
       <Card>
         <Title>Total Revenue</Title>
-        <Metric>${totalRevenueData.totalRevenue.toLocaleString()}</Metric>
+        <Metric>${totalRevenue.toLocaleString()}</Metric>
       </Card>
+      <TotalRevenueChart clientsData={clientRevenue} />
 
-      <TotalRevenueChart clientsData={combinedClientData} />
-
-
-      {streamsDatasets.map((dataset, index) => (
-        <Card>
-        <ClientRevenueBreakdownChart 
-          key={index}
-          revenueData={dataset.data} 
-          title={dataset.title}
-        />
-      </Card>
+      {/* Breakdown of all clients revenue per income stream */}
+      {newsletterRevenue.map((dataset, index) => (
+        <Card key={index}>
+          <ClientRevenueBreakdownChart
+            revenueData={dataset.data}
+            title={dataset.title}
+          />
+        </Card>
       ))}
     </div>
   );
