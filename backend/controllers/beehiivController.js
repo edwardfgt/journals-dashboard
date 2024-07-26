@@ -17,6 +17,7 @@ exports.getNewsletterStats = async (req, res) => {
           `https://api.beehiiv.com/v2/publications/${pub.id}/subscriptions`,
           {
             headers: { Authorization: `Bearer ${pub.token}` },
+            params: { status: "active" },
           }
         );
         return { id: pub.id, data: response.data };

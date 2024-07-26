@@ -7,7 +7,7 @@ const NewsletterHealth = () => {
   return(
     <div className="space-y-6">
     <Card>
-        <Title>HEALTH TEST</Title>
+        <Title>Newsletter Stats</Title>
         <NewsletterStats/>
       </Card>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchNewsletterStats } from '../services/api';
+import { BadgeDelta, Card } from '@tremor/react';
 
 const NewsletterStats = () => {
   const [stats, setStats] = useState([]);
@@ -24,14 +25,26 @@ const NewsletterStats = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  console.log(stats)
+
   return (
     <div>
       <h2>Newsletter Stats</h2>
       {stats.map((newsletter) => (
-        <div key={newsletter.id}>
-          <h3>Newsletter ID: {newsletter.id}</h3>
-          <pre>{JSON.stringify(newsletter.data, null, 2)}</pre>
+        <Card className="mx-auto max-w-sm">
+        <div className="flex items-center justify-between">
+          <h4 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">Subscribers</h4>
+          <BadgeDelta
+            deltaType="moderateIncrease"
+            isIncreasePositive={true}
+            size="xs"
+          >
+            +9.3%
+          </BadgeDelta>
         </div>
+        <p className="text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{newsletter.data.total_results}</p>
+      </Card>
+  
       ))}
     </div>
   );
