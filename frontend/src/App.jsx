@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RevenueDashboard from './components/revenueDashboard'
 import Sidebar from './components/sidebar';
 import Overview from './components/Overview';  // Create this component
-import NewsletterHealth from './components/NewsletterHealth';  // Create this component
+import NewsletterHealth from './components/NewsletterHealth';
 import { Card, Title } from '@tremor/react';
 import './App.css'
 

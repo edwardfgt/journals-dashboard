@@ -16,3 +16,8 @@ export const fetchNewsletterRevenue = async () => {
   const response = await axios.get(`${API_URL}/revenue/newsletter-revenue`);
   return response.data;
 };
+
+export const fetchNewsletterStats = async () => {
+  const response = await axios.get(`${API_URL}/beehiiv/stats`);
+  return response.data;
+};
