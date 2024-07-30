@@ -5,8 +5,16 @@ const express = require("express");
 dotenv.config();
 
 const publications = [
-  { id: process.env.PUBLICATION_1_ID, token: process.env.PUBLICATION_1_TOKEN },
-  { id: process.env.PUBLICATION_2_ID, token: process.env.PUBLICATION_2_TOKEN },
+  {
+    name: process.env.PUBLICATION_1_NAME,
+    id: process.env.PUBLICATION_1_ID,
+    token: process.env.PUBLICATION_1_TOKEN,
+  },
+  {
+    name: process.env.PUBLICATION_2_NAME,
+    id: process.env.PUBLICATION_2_ID,
+    token: process.env.PUBLICATION_2_TOKEN,
+  },
 ];
 
 exports.getNewsletterStats = async (req, res) => {
@@ -20,7 +28,7 @@ exports.getNewsletterStats = async (req, res) => {
             params: { status: "active" },
           }
         );
-        return { id: pub.id, data: response.data };
+        return { name: pub.name, id: pub.id, data: response.data };
       })
     );
 
