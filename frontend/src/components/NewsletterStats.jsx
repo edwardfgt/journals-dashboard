@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchNewsletterStats } from '../services/api';
-import { BadgeDelta, Card } from '@tremor/react';
+import { Card, BadgeDelta, Grid, Col, Text } from "@tremor/react";
 
 const NewsletterStats = () => {
   const [stats, setStats] = useState([]);
@@ -29,9 +29,13 @@ const NewsletterStats = () => {
 
   return (
     <div>
-      <h2>Newsletter Stats</h2>
+
       {stats.map((newsletter) => (
-        <Card className="mx-auto max-w-sm">
+        <div className="flex flex-row">
+        <Card className="basis-1/2 x-auto max-w-sm">
+          <h2 className='text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>{newsletter.name}</h2>
+        </Card>
+        <Card className="basis-1/2 x-auto max-w-sm">
         <div className="flex items-center justify-between">
           <h4 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">Subscribers</h4>
           <BadgeDelta
@@ -44,6 +48,7 @@ const NewsletterStats = () => {
         </div>
         <p className="text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{newsletter.data.total_results}</p>
       </Card>
+      </div>
   
       ))}
     </div>
