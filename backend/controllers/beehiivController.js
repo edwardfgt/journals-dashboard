@@ -31,6 +31,11 @@ const publications = [
     id: process.env.PUBLICATION_5_ID,
     token: process.env.PUBLICATION_5_TOKEN,
   },
+  {
+    name: process.env.PUBLICATION_6_NAME,
+    id: process.env.PUBLICATION_6_ID,
+    token: process.env.PUBLICATION_6_TOKEN,
+  },
 ];
 
 exports.getNewsletterStats = async (req, res) => {
