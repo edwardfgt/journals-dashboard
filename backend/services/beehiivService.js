@@ -19,8 +19,28 @@ const fetchRecentPosts = async (publication) => {
       data: { expand: ["stats"] }
     }
   );
-  console.log(response.data);
-  return response.data;
+  console.log("Fetched posts data:", response.data);
+  return response.data.data; // Ensure this returns the array of posts
+};
+
+const calculateAverage = (posts) => {
+    const totalOpenRate = posts.reduce((sum, post) => sum + post.stats.email.open_rate, 0);
+    return totalOpenRate / posts.length;
+  };
+
+const calculateStats = (posts) => {
+  if (posts.length <= 1) {
+    return { average: null, previousAverage: null, percentageChange: null };
+  }
+
+  const recentPosts = posts.slice(0, Math.min(posts.length, 11)); // Most recent 11 posts
+  const olderPosts = posts.length > 11 ? posts.slice(11, 21) : []; // Previous 10 posts
+
+  const average = calculateAverage(recentPosts);
+  const previousAverage = olderPosts.length > 0 ? calculateAverage(olderPosts) : null;
+  const percentageChange = previousAverage !== null ? ((average - previousAverage) / previousAverage) * 100 : null;
+
+  return { average, previousAverage, percentageChange };
 };
 
 const fetchNewsletterData = async (publication) => {
@@ -29,11 +49,17 @@ const fetchNewsletterData = async (publication) => {
     fetchRecentPosts(publication),
   ]);
 
+
+  const { average, previousAverage, percentageChange } = calculateStats(posts);
+
   return {
     name: publication.name,
     id: publication.id,
     subscriptions,
     posts,
+    averageOpenRate: average,
+    previousAverageOpenRate: previousAverage,
+    percentageChange,
   };
 };
 
