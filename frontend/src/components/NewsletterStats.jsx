@@ -32,17 +32,16 @@ const NewsletterStats = () => {
 
       {stats.map((newsletter) => (
         <div className="flex flex-row">
-          <Card className="basis-1/2 x-auto max-w-sm">
-            <h2 className='text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>{newsletter.name}</h2>
-          </Card>
-          <Card className="basis-1/2 x-auto max-w-sm">
+          <Card className="basis-full x-auto max-w-sm">
             <div className="flex items-center justify-between">
-              <h4 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">Subscribers</h4>
+              <h2 className='text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold pr-4'>{newsletter.name}</h2>
+              <div>
+                <h4 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">Subscribers</h4>
+                <p className="text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{newsletter.subscriptions.total_results}</p>
+              </div>
             </div>
-            <p className="text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{newsletter.subscriptions.total_results}</p>
           </Card>
         </div>
-
       ))}
     </div>
   );
