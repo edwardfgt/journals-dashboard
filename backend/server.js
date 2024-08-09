@@ -15,6 +15,7 @@ app.use(express.json());
 app.use("/api/revenue", revenueRoutes);
 app.use("/api/beehiiv", beehiivRoutes);
 
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });

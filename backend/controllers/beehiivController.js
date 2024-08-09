@@ -1,6 +1,7 @@
 const axios = require("axios");
 const dotenv = require("dotenv");
 const express = require("express");
+const { fetchNewsletterData } = require("../services/beehiivService");
 
 dotenv.config();
 
@@ -35,21 +36,11 @@ const publications = [
 exports.getNewsletterStats = async (req, res) => {
   try {
     const results = await Promise.all(
-      publications.map(async (pub) => {
-        const response = await axios.get(
-          `https://api.beehiiv.com/v2/publications/${pub.id}/subscriptions`,
-          {
-            headers: { Authorization: `Bearer ${pub.token}` },
-            params: { status: "active" },
-          }
-        );
-        return { name: pub.name, id: pub.id, data: response.data };
-      })
+      publications.map(fetchNewsletterData)
     );
-
     res.json(results);
   } catch (error) {
-    console.error(`Error fetching stats for ${pub.name}:`, error.message);
-    res.status(500).json({ error: "Failed to fetch newsletter stats" });
+    console.error(`Error fetching newsletter data:`, error.message);
+    res.status(500).json({ error: "Failed to fetch newsletter data" });
   }
 };
