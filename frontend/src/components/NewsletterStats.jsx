@@ -58,6 +58,22 @@ const NewsletterStats = () => {
                 </span>
               )}
             </Card>
+            <Card className="p-4">
+              <h4 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">Average CTR</h4>
+              <p className="text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">{newsletter.averageClickRate.toFixed(2)}%</p>
+              {newsletter.percentageChangeClickRate !== null && (
+                <span
+                  className={classNames(
+                    newsletter.percentageChangeClickRate >= 0
+                      ? 'bg-emerald-100 text-emerald-800 ring-emerald-600/10 dark:bg-emerald-400/10 dark:text-emerald-500 dark:ring-emerald-400/20'
+                      : 'bg-red-100 text-red-800 ring-red-600/10 dark:bg-red-400/10 dark:text-red-500 dark:ring-red-400/20',
+                    'inline-flex items-center rounded-tremor-small px-2 py-1 text-tremor-label font-medium ring-1 ring-inset mt-2',
+                  )}
+                >
+                  {newsletter.percentageChangeClickRate.toFixed(2)}%
+                </span>
+              )}
+            </Card>
           </div>
         </div>
       ))}
