@@ -16,6 +16,7 @@ const NewsletterStats = () => {
       try {
         const data = await fetchNewsletterStats();
         setStats(data);
+        console.log(data);
         setLoading(false);
       } catch (err) {
         setError('Failed to fetch newsletter stats');

@@ -43,6 +43,26 @@ const calculateStats = (posts) => {
   return { average, previousAverage, percentageChange };
 };
 
+const calculateAverageClickRate = (posts) => {
+    const totalClickRate = posts.reduce((sum, post) => sum + post.stats.email.click_rate, 0);
+    return totalClickRate / posts.length;
+  };
+  
+  const calculateClickRateStats = (posts) => {
+    if (posts.length <= 1) {
+      return { averageClickRate: null, previousAverageClickRate: null, percentageChangeClickRate: null };
+    }
+  
+    const recentPosts = posts.slice(0, Math.min(posts.length, 11)); // Most recent 11 posts
+    const olderPosts = posts.length > 11 ? posts.slice(11, 21) : []; // Previous 10 posts
+  
+    const averageClickRate = calculateAverageClickRate(recentPosts);
+    const previousAverageClickRate = olderPosts.length > 0 ? calculateAverageClickRate(olderPosts) : null;
+    const percentageChangeClickRate = previousAverageClickRate !== null ? ((averageClickRate - previousAverageClickRate) / previousAverageClickRate) * 100 : null;
+  
+    return { averageClickRate, previousAverageClickRate, percentageChangeClickRate };
+  };
+
 const fetchNewsletterData = async (publication) => {
   const [subscriptions, posts] = await Promise.all([
     fetchSubscriptions(publication),
@@ -51,6 +71,8 @@ const fetchNewsletterData = async (publication) => {
 
 
   const { average, previousAverage, percentageChange } = calculateStats(posts);
+  const { averageClickRate, previousAverageClickRate, percentageChangeClickRate } = calculateClickRateStats(posts);
+
 
   return {
     name: publication.name,
@@ -60,6 +82,9 @@ const fetchNewsletterData = async (publication) => {
     averageOpenRate: average,
     previousAverageOpenRate: previousAverage,
     percentageChange,
+    averageClickRate,
+    previousAverageClickRate,
+    percentageChangeClickRate,
   };
 };
 
