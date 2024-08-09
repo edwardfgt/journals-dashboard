@@ -13,7 +13,7 @@ const fetchSubscriptions = async (publication) => {
 
 const fetchRecentPosts = async (publication) => {
   const response = await axios.get(
-    `https://api.beehiiv.com/v2/publications/${publication.id}/posts?limit=21`,
+    `https://api.beehiiv.com/v2/publications/${publication.id}/posts?status=confirmed&limit=21&order_by=publish_date&direction=desc`,
     {
       headers: { Authorization: `Bearer ${publication.token}` },
       data: { expand: ["stats"] }
