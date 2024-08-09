@@ -33,7 +33,7 @@ const NewsletterStats = () => {
     <div>
       {stats.map((newsletter) => (
         <div className="flex flex-row" key={newsletter.id}>
-          <div className="grid grid-cols-3 gap-4 w-full">
+          <div className="grid grid-cols-3 gap-4 w-full p-2">
             <Card className="p-4">
               <h2 className='text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>{newsletter.name}</h2>
             </Card>
