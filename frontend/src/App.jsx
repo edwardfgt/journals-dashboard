@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Router>
-      <div className="flex h-screen bg-tremor-background dark:bg-dark-tremor-background">
+      <div className="flex h-screen w-screen bg-tremor-background dark:bg-dark-tremor-background">
         <Sidebar />
         <div className="flex-1 overflow-auto">
           <div className="p-4 md:p-10 max-w-7xl mx-auto">
