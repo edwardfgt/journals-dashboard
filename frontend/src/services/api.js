@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useQuery } from '@tanstack/react-query';
 
 const API_URL = "http://localhost:3000/api";
 
@@ -20,4 +21,11 @@ export const fetchNewsletterRevenue = async () => {
 export const fetchNewsletterStats = async () => {
   const response = await axios.get(`${API_URL}/beehiiv/stats`);
   return response.data;
+};
+
+export const useNewsletterStats = () => {
+  return useQuery({
+    queryKey: ['newsletterStats'],
+    queryFn: fetchNewsletterStats,
+  });
 };

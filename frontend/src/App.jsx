@@ -6,28 +6,33 @@ import Overview from './components/overview';
 import NewsletterHealth from './components/NewsletterHealth';
 import { Card, Title } from '@tremor/react';
 import './App.css'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Router>
-      <div className="flex h-screen w-screen bg-tremor-background dark:bg-dark-tremor-background">
-        <Sidebar />
-        <div className="flex-1 overflow-auto">
-          <div className="p-4 md:p-10 max-w-7xl mx-auto">
-            <Card className="mb-5">
-              <Title>Agency Dashboard</Title>
-            </Card>
-            <Routes>
-              <Route path="/" element={<Overview />} />
-              <Route path="/revenue" element={<RevenueDashboard />} />
-              <Route path="/newsletter-health" element={<NewsletterHealth />} />
-            </Routes>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <div className="flex h-screen w-screen bg-tremor-background dark:bg-dark-tremor-background">
+          <Sidebar />
+          <div className="flex-1 overflow-auto">
+            <div className="p-4 md:p-10 max-w-7xl mx-auto">
+              <Card className="mb-5">
+                <Title>Agency Dashboard</Title>
+              </Card>
+              <Routes>
+                <Route path="/" element={<Overview />} />
+                <Route path="/revenue" element={<RevenueDashboard />} />
+                <Route path="/newsletter-health" element={<NewsletterHealth />} />
+              </Routes>
+            </div>
           </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </QueryClientProvider>
   );
 }
 
