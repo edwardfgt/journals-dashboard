@@ -12,11 +12,6 @@ const publications = [
     token: process.env.PUBLICATION_1_TOKEN,
   },
   {
-    name: process.env.PUBLICATION_2_NAME,
-    id: process.env.PUBLICATION_2_ID,
-    token: process.env.PUBLICATION_2_TOKEN,
-  },
-  {
     name: process.env.PUBLICATION_3_NAME,
     id: process.env.PUBLICATION_3_ID,
     token: process.env.PUBLICATION_3_TOKEN,
