@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 const API_URL = "http://localhost:3000/api";
 
@@ -23,9 +23,24 @@ export const fetchNewsletterStats = async () => {
   return response.data;
 };
 
-export const useNewsletterStats = () => {
+export const login = async (username, password) => {
+  const response = await axios.post(`${API_URL}/login`, { username, password });
+  return response.data;
+};
+
+export const useApiQuery = (queryKey, fetchFn) => {
   return useQuery({
-    queryKey: ['newsletterStats'],
-    queryFn: fetchNewsletterStats,
+    queryKey,
+    queryFn: fetchFn,
   });
 };
+
+export const useMutationForPost = (mutationFn) => {
+  return useMutation({
+    mutationFn,
+  });
+};
+
+export const useNewsletterStats = () => useApiQuery(['newsletterStats'], fetchNewsletterStats);
+export const useTotalRevenue = () => useApiQuery(['totalRevenue'], fetchTotalRevenue);
+export const useLogin = () => useMutationForPost(login);
