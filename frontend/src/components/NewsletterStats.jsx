@@ -8,6 +8,7 @@ function classNames(...classes) {
 
 const NewsletterStats = () => {
   const { data: stats, isLoading, error } = useNewsletterStats();
+  console.log(stats);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
