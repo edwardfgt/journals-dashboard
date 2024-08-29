@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@tremor/react';
 import { HomeIcon, ChartBarIcon, NewspaperIcon } from '@heroicons/react/24/outline';
+import { AppContext } from '../App';
 
 const Sidebar = () => {
+  const { setIsLoggedIn } = useContext(AppContext);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+  };
+
   return (
     <div className="w-64 bg-tremor-background dark:bg-dark-tremor-background text-tremor-content dark:text-dark-tremor-content h-screen p-4">
       <div className="mb-8">
@@ -31,6 +39,11 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
+      <div className="mt-8">
+        <button onClick={handleLogout} className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          Logout
+        </button>
+      </div>
     </div>
   );
 };
