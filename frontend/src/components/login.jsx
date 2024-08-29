@@ -5,16 +5,26 @@ const Login = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const login = useLogin();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await login.mutateAsync({ username, password });
-            localStorage.setItem('token', data.token);
-            onLoginSuccess();
+            const response = await useLogin({ username, password });
+            console.log('API Response:', response);
+            if (response && response.token) {
+                localStorage.setItem('token', response.token);
+                console.log(response.message);
+                onLoginSuccess();
+            } else {
+                throw new Error('Invalid response structure');
+            }
         } catch (error) {
+            console.error('Login error:', error);
             setError('Login failed, please check your credentials.');
+
+            if (error.response) {
+                console.error('Error response:', error.response);
+            }
         }
     };
 

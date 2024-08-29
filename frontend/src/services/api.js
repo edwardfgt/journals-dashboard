@@ -23,10 +23,6 @@ export const fetchNewsletterStats = async () => {
   return response.data;
 };
 
-export const login = async (username, password) => {
-  const response = await axios.post(`${API_URL}/login`, { username, password });
-  return response.data;
-};
 
 export const useApiQuery = (queryKey, fetchFn) => {
   return useQuery({
@@ -43,4 +39,12 @@ export const useMutationForPost = (mutationFn) => {
 
 export const useNewsletterStats = () => useApiQuery(['newsletterStats'], fetchNewsletterStats);
 export const useTotalRevenue = () => useApiQuery(['totalRevenue'], fetchTotalRevenue);
-export const useLogin = () => useMutationForPost(login);
+
+export const useLogin = async ({ username, password }) => {
+    try {
+        const response = await axios.post(`${API_URL}/auth/login`, { username, password });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Login failed');
+    }
+};
