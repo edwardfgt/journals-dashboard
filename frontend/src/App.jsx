@@ -40,9 +40,6 @@ function App() {
               <Sidebar />
               <div className="flex-1 overflow-auto">
                 <div className="p-4 md:p-10 max-w-7xl mx-auto">
-                  <Card className="mb-5">
-                    <Title>Agency Dashboard</Title>
-                  </Card>
                   <Routes>
                     <Route path="/" element={<NewsletterDashboard />} />
                     <Route path="/revenue" element={<RevenueDashboard />} />
