@@ -1,6 +1,6 @@
 import NewsletterStats from './NewsletterStats';
 import React, { useState, useEffect } from 'react';
-import { Card, Title, Metric } from '@tremor/react';
+import { Card, Title } from '@tremor/react';
 
 const NewsletterHealth = () => {
 

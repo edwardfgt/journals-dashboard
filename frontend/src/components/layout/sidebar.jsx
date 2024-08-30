@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@tremor/react';
 import { HomeIcon, ChartBarIcon, NewspaperIcon } from '@heroicons/react/24/outline';
-import { AppContext } from '../App';
+import { AppContext } from '../../App';
 
 const Sidebar = () => {
   const { setIsLoggedIn } = useContext(AppContext);

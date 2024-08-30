@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Title, Metric } from '@tremor/react';
-import TotalRevenueChart from './totalRevenueChart';
-import ClientRevenueBreakdownChart from './ClientRevenueBreakdownChart';
+import TotalRevenueChart from './charts/totalRevenueChart';
+import ClientRevenueBreakdownChart from './charts/ClientRevenueBreakdownChart';
 import { fetchTotalRevenue, fetchClientRevenue, fetchNewsletterRevenue } from '../services/api';
 
 const RevenueDashboard = () => {
