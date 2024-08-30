@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RevenueDashboard from './components/revenueDashboard'
 import Sidebar from './components/sidebar';
-import Overview from './components/overview';
 import NewsletterHealth from './components/NewsletterHealth';
 import { Card, Title } from '@tremor/react';
 import './App.css'
@@ -45,9 +44,8 @@ function App() {
                     <Title>Agency Dashboard</Title>
                   </Card>
                   <Routes>
-                    <Route path="/" element={<Overview />} />
+                    <Route path="/" element={<NewsletterHealth />} />
                     <Route path="/revenue" element={<RevenueDashboard />} />
-                    <Route path="/newsletter-health" element={<NewsletterHealth />} />
                   </Routes>
                 </div>
               </div>

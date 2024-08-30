@@ -21,20 +21,14 @@ const Sidebar = () => {
         <ul className="space-y-2">
           <li>
             <Link to="/" className="flex items-center text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis hover:text-tremor-brand dark:hover:text-dark-tremor-brand">
-              <Icon icon={HomeIcon} className="w-5 h-5 mr-2" />
-              Overview
+              <Icon icon={NewspaperIcon} className="w-5 h-5 mr-2" />
+              Newsletter Health
             </Link>
           </li>
           <li>
             <Link to="/revenue" className="flex items-center text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis hover:text-tremor-brand dark:hover:text-dark-tremor-brand">
               <Icon icon={ChartBarIcon} className="w-5 h-5 mr-2" />
               Revenue
-            </Link>
-          </li>
-          <li>
-            <Link to="/newsletter-health" className="flex items-center text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis hover:text-tremor-brand dark:hover:text-dark-tremor-brand">
-              <Icon icon={NewspaperIcon} className="w-5 h-5 mr-2" />
-              Newsletter Health
             </Link>
           </li>
         </ul>
