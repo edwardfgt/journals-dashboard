@@ -11,7 +11,7 @@ import Login from './components/login';
 
 const queryClient = new QueryClient();
 
-export const AppContext = createContext(); // Create AppContext
+export const AppContext = createContext();
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,11 +29,13 @@ function App() {
   };
 
   return (
-    <AppContext.Provider value={{ setIsLoggedIn }}> {/* Provide context value */}
+    <AppContext.Provider value={{ setIsLoggedIn }}>
       <QueryClientProvider client={queryClient}>
         <Router>
           {!isLoggedIn ? (
-            <Login onLoginSuccess={handleLoginSuccess} />
+            <div className="h-screen w-screen">
+              <Login onLoginSuccess={handleLoginSuccess} />
+            </div>
           ) : (
             <div className="flex h-screen w-screen bg-tremor-background dark:bg-dark-tremor-background">
               <Sidebar />
@@ -53,7 +55,7 @@ function App() {
           )}
         </Router>
       </QueryClientProvider>
-    </AppContext.Provider> // Close Provider
+    </AppContext.Provider>
   );
 }
 
