@@ -5,6 +5,7 @@ import { useNewsletterStats } from '../../services/api';
 
 const NewsletterDashboard = () => {
   const { data: stats, isLoading, error } = useNewsletterStats();
+  console.log(stats);
 
   const totalSubscribers = stats ? stats.reduce((sum, newsletter) => sum + newsletter.subscriptions.total_results, 0) : 0;
 
