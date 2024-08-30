@@ -22,7 +22,7 @@ const Sidebar = () => {
           <li>
             <Link to="/" className="flex items-center text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis hover:text-tremor-brand dark:hover:text-dark-tremor-brand">
               <Icon icon={NewspaperIcon} className="w-5 h-5 mr-2" />
-              Newsletter Health
+              Newsletter Dashboard
             </Link>
           </li>
           <li>

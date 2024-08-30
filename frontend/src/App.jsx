@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RevenueDashboard from './components/revenueDashboard'
 import Sidebar from './components/layout/sidebar';
-import NewsletterHealth from './components/newsletterdashboard/NewsletterHealth';
+import NewsletterDashboard from './components/newsletterdashboard/NewsletterDashboard';
 import { Card, Title } from '@tremor/react';
 import './App.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -44,7 +44,7 @@ function App() {
                     <Title>Agency Dashboard</Title>
                   </Card>
                   <Routes>
-                    <Route path="/" element={<NewsletterHealth />} />
+                    <Route path="/" element={<NewsletterDashboard />} />
                     <Route path="/revenue" element={<RevenueDashboard />} />
                   </Routes>
                 </div>
