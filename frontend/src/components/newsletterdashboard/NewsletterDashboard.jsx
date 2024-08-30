@@ -14,7 +14,7 @@ const NewsletterDashboard = () => {
   return (
     <div>
       <GeneralStats totalSubscribers={totalSubscribers} />
-      <NewsletterStats />
+      <NewsletterStats stats={stats} />
     </div>
   );
 };

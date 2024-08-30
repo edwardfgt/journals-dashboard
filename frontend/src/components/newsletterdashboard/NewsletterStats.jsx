@@ -2,11 +2,7 @@ import React from 'react';
 import { useNewsletterStats } from '../../services/api';
 import NewsletterCard from './NewsletterCard';
 
-const NewsletterStats = () => {
-  const { data: stats, isLoading, error } = useNewsletterStats();
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+const NewsletterStats = ({ stats }) => {
 
   return (
     <div>
