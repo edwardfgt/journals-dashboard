@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Metric, Text, Flex, Grid } from '@tremor/react';
 
-const GeneralStats = ({ totalSubscribers }) => {
+const GeneralStats = ({ totalSubscribers, totalSends }) => {
     const totalEmailsSent = 50000;
 
     return (
@@ -15,7 +15,7 @@ const GeneralStats = ({ totalSubscribers }) => {
             <Card>
                 <Flex flexDirection="col" alignItems="start">
                     <Text>Total Emails Sent</Text>
-                    <Metric>{totalEmailsSent.toLocaleString()}</Metric>
+                    <Metric>{totalSends.toLocaleString()}</Metric>
                 </Flex>
             </Card>
         </Grid>

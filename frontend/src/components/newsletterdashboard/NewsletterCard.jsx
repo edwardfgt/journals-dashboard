@@ -11,17 +11,17 @@ const NewsletterCard = ({ newsletter }) => {
                 </Card>
                 <StatCard
                     title="Subscribers"
-                    value={newsletter.subscriptions.total_results}
+                    value={newsletter.subscriptions?.total_results ?? null}
                 />
                 <StatCard
                     title="Average Open Rate"
-                    value={`${newsletter.averageOpenRate.toFixed(2)}%`}
-                    percentageChange={newsletter.percentageChange}
+                    value={newsletter.averageOpenRate != null ? `${newsletter.averageOpenRate.toFixed(2)}%` : null}
+                    percentageChange={newsletter.percentageChange ?? null}
                 />
                 <StatCard
                     title="Average CTR"
-                    value={`${newsletter.averageClickRate.toFixed(2)}%`}
-                    percentageChange={newsletter.percentageChangeClickRate}
+                    value={newsletter.averageClickRate != null ? `${newsletter.averageClickRate.toFixed(2)}%` : null}
+                    percentageChange={newsletter.percentageChangeClickRate ?? null}
                 />
             </div>
         </div>

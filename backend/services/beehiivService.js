@@ -1,5 +1,16 @@
 const axios = require("axios");
 
+const fetchTotalSends = async (publication) => {
+  const response = await axios.get(
+    `https://api.beehiiv.com/v2/publications/${publication.id}`,
+    {
+      headers: { Authorization: `Bearer ${publication.token}` },
+      params: { expand: ["stat_total_sent"] }
+    }
+  );
+  return response.data;
+};
+
 const fetchSubscriptions = async (publication) => {
   const response = await axios.get(
     `https://api.beehiiv.com/v2/publications/${publication.id}/subscriptions`,
@@ -13,13 +24,12 @@ const fetchSubscriptions = async (publication) => {
 
 const fetchRecentPosts = async (publication) => {
   const response = await axios.get(
-    `https://api.beehiiv.com/v2/publications/${publication.id}/posts?status=confirmed&limit=100&order_by=publish_date&direction=desc`,
+    `https://api.beehiiv.com/v2/publications/${publication.id}/posts?status=confirmed&limit=22&order_by=publish_date&direction=desc`,
     {
       headers: { Authorization: `Bearer ${publication.token}` },
       data: { expand: ["stats"] }
     }
   );
-  console.log("Fetched posts data:", response.data);
   return response.data.data;
 };
 
@@ -65,32 +75,29 @@ const calculateAverageClickRate = (posts) => {
     return { averageClickRate, previousAverageClickRate, percentageChangeClickRate };
   };
 
-const calculateTotalSends = (posts) => {
-  return posts.reduce((total, post) => total + post.stats.email.recipients, 0);
-};
 
 const fetchNewsletterData = async (publication) => {
-  const [subscriptions, posts] = await Promise.all([
+  const [subscriptions, posts, totalSendsData] = await Promise.all([
     fetchSubscriptions(publication),
     fetchRecentPosts(publication),
+    fetchTotalSends(publication),
   ]);
 
   const { average, previousAverage, percentageChange } = calculateStats(posts);
   const { averageClickRate, previousAverageClickRate, percentageChangeClickRate } = calculateClickRateStats(posts);
-  const totalSends = calculateTotalSends(posts);
 
   return {
     name: publication.name,
     id: publication.id,
     subscriptions,
     posts,
-    averageOpenRate: average,
-    previousAverageOpenRate: previousAverage,
-    percentageChange,
-    averageClickRate,
-    previousAverageClickRate,
-    percentageChangeClickRate,
-    totalSends,
+    averageOpenRate: average || null,
+    previousAverageOpenRate: previousAverage || null,
+    percentageChange: percentageChange || null,
+    averageClickRate: averageClickRate || null,
+    previousAverageClickRate: previousAverageClickRate || null,
+    percentageChangeClickRate: percentageChangeClickRate || null,
+    totalSendsData
   };
 };
 
