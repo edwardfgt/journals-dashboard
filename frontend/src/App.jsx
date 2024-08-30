@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RevenueDashboard from './components/revenueDashboard'
 import Sidebar from './components/layout/sidebar';
 import NewsletterDashboard from './components/newsletterdashboard/NewsletterDashboard';
-import { Card, Title } from '@tremor/react';
 import './App.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Login from './components/auth/login';
@@ -13,7 +12,6 @@ const queryClient = new QueryClient();
 export const AppContext = createContext();
 
 function App() {
-  const [count, setCount] = useState(0)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
