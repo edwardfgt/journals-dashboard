@@ -13,11 +13,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-tremor-background dark:bg-dark-tremor-background text-tremor-content dark:text-dark-tremor-content h-screen p-4">
+    <div className="w-64 bg-tremor-background dark:bg-dark-tremor-background text-tremor-content dark:text-dark-tremor-content h-screen p-4 flex flex-col">
       <div className="mb-8">
         <h2 className="text-xl font-semibold">Agency Dashboard</h2>
       </div>
-      <nav>
+      <nav className="flex-grow">
         <ul className="space-y-2">
           <li>
             <Link to="/" className="flex items-center text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis hover:text-tremor-brand dark:hover:text-dark-tremor-brand">
@@ -33,7 +33,7 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
-      <div className="mt-8">
+      <div className="mt-auto">
         <button onClick={handleLogout} className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
           Logout
         </button>
