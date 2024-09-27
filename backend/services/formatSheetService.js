@@ -3,7 +3,7 @@ const convertGoogleSheetsData = (data) => {
     const clientData = {};
   
     rows.forEach(row => {
-      const [monthYear, clientName, , , sparkloop, beehiivBoosts, sponsorship] = row;
+      const [monthYear, clientName, , , sparkloop, beehiivBoosts, sponsorship, , , affiliate] = row;
   
       if (!clientData[clientName]) {
         clientData[clientName] = [];
@@ -17,7 +17,7 @@ const convertGoogleSheetsData = (data) => {
         Sparkloop: parseFloat(sparkloop.replace('$', '').replace(',', '')),
         'Beehiiv Boosts': parseFloat(beehiivBoosts.replace('$', '').replace(',', '')),
         'advertising revenue': parseFloat(sponsorship.replace('$', '').replace(',', '')),
-        affiliate: 0
+        'affiliate revenue': parseFloat(affiliate.replace('$', '').replace(',', ''))
       };
   
       clientData[clientName].push(entry);
