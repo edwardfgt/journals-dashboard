@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const revenueRoutes = require("./routes/revenue");
 const beehiivRoutes = require("./routes/beehiiv");
 const authRoutes = require('./routes/auth');
-
+const sheetRoutes = require('./routes/sheet');
 dotenv.config();
 
 const app = express();
@@ -16,6 +16,7 @@ app.use(express.json());
 app.use("/api/revenue", revenueRoutes);
 app.use("/api/beehiiv", beehiivRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/sheet", sheetRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
