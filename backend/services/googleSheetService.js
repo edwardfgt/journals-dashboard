@@ -23,7 +23,7 @@ async function getSheetData() {
   try {
     const getRows = await googleSheets.spreadsheets.values.get({
       spreadsheetId,
-      range: "Overview!A1:E",
+      range: "Overview!A8:L",
     });
 
     const rows = getRows.data.values;

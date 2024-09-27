@@ -34,11 +34,11 @@ const RevenueDashboard = () => {
       <TotalRevenueChart clientsData={clientRevenue} />
 
       {/* Breakdown of all clients revenue per income stream */}
-      {newsletterRevenue.map((dataset, index) => (
+      {Object.entries(newsletterRevenue).map(([newsletterName, data], index) => (
         <Card key={index}>
           <ClientRevenueBreakdownChart
-            revenueData={dataset.data}
-            title={dataset.title}
+            revenueData={data}
+            title={`Revenue Breakdown - ${newsletterName}`}
           />
         </Card>
       ))}

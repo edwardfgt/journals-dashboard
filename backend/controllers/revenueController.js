@@ -1,6 +1,5 @@
 const totalRevenueData = require("../data/totalRevenueData.json");
-const client1Data = require("../data/client1Data.json");
-const client2Data = require("../data/client2Data.json");
+  
 
 exports.getTotalRevenue = (req, res) => {
   res.json(totalRevenueData);
@@ -17,9 +16,26 @@ exports.getClientRevenue = (req, res) => {
 };
 
 exports.getNewsletterRevenue = (req, res) => {
-  const newsletterData = [
-    { data: client1Data, title: "Newsletter 1" },
-    { data: client2Data, title: "Newsletter 2" },
-  ];
-  res.json(newsletterData);
+  const { getSheetData } = require('../services/googleSheetService');
+  const convertGoogleSheetsData = require('../services/formatSheetService');
+
+  const fetchAndFormatSheetData = async () => {
+    try {
+      const rawSheetData = await getSheetData();
+      const formattedData = convertGoogleSheetsData(rawSheetData);
+      return formattedData;
+    } catch (error) {
+      console.error('Error fetching or formatting sheet data:', error);
+      throw error;
+    }
+  };
+
+  fetchAndFormatSheetData()
+    .then(newsletterData => {
+      res.json(newsletterData);
+    })
+    .catch(error => {
+      console.error('Error in getNewsletterRevenue:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    });
 };
